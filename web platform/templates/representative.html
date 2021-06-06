@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione parchi "Circoscrizione {{circ}}"</title>
+
+     <!-- Favicons -->
+     <link href="/static/img/landingpage/marker.png" rel="icon">
+     
+     <!-- JQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+     <!-- Bootstrap -->
+     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <script type = "text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+     <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+     <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+ 
+     
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+      <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Chelsea Market' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" type = "text/css" href="/static/css/representative.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <ul>
+      <li><a>Circoscrizione {{circ}}</a></li>
+      <li style = "float:right"><a class = "active" href="/findplay/logout">LOGOUT</a></li>
+    </ul>
+   
+    <div class="mt-4">
+      <table id="tab_parchi" class="display table responsive">
+        <p align=center class="title_tab">Elenco dei parchi della "Circoscrizione {{ circ }}"</p>
+        <thead class="tab_head">
+            <tr>
+                <th>Codice parco</th>
+                <th>Nome</th>
+                <th>Indirizzo</th>
+                <th>Voto medio</th>
+                <th>Numero strutture</th>
+                <th>Nuove segnalazioni</th>
+                <th>Totale segnalazioni ricevute</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for row in parks %}
+            <tr>
+              <td><a href='/findplay/playgrounds/{{ row["code_pg"] }}'>{{ row["code_pg"] }}</a></td>
+                <td>{{ row["pg_name"] }}</td>
+                <td>{{ row["pg_address"] }}</td>
+                {% if row["pg_avg_score"] == 0 %}
+                  <td><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                {% elif row["pg_avg_score"] == 1 %}
+                  <td><div style="display:none;">1</div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                {% elif row["pg_avg_score"] == 2 %}
+                  <td><div style="display:none;">2</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                {% elif row["pg_avg_score"] == 3 %}
+                  <td><div style="display:none;">3</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                {% elif row["pg_avg_score"] == 4 %}
+                  <td><div style="display:none;">4</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span></td>
+                {% else %}
+                  <td><div style="display:none;">5</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></td>
+                {% endif%}
+                <td>{{ row["pg_tot_equi"] }}</td>
+                {% if row["num_new_reports"] != 0 %}
+                  <td class="new">{{ row["num_new_reports"] }} </td>
+                {% elif row["num_new_reports"] == 0 %}
+                  <td>{{ row["num_new_reports"] }}</td>
+                {% endif%}
+                <td>{{ row["num_reports"] }}</td>
+            </tr>
+          {% endfor %}  
+        </tbody>
+       </table>
+    </div>
+
+
+
+    <!-- <script type="text/javascript">
+      $('#tab_parchi').DataTable({sorting:true});
+    </script> -->
+    <script>
+      $(document).ready( function () {
+        $('#tab_parchi').DataTable({
+          "language": {
+            "search": "Cerca parco: ",
+            "paginate": {
+              "previous":"Precedente",
+              "next":"Successivo"
+            },
+            "info": "Pagina _PAGE_ di _PAGES_",
+            "infoEmpty": "Risultato da 0 a 0 su 0 risultati",
+            "infoFiltered": "(filtrati su un totale di _MAX_ risultati)",
+            "zeroRecords": "Nessun risultato trovato",
+            "lengthMenu": "Mostra <select>"+
+              '<option value="25">25</option>'+
+              '<option value="-1">Tutti</option>'+
+              '</select> parchi per pagina'
+          },
+          "iDisplayLength": 25
+        });
+    } );
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione reports strutture {{ tipo_struttura }}: {{codice_struttura}}</title>
+    
+    <!-- Favicons -->
+    <link href="/static/img/landingpage/marker.png" rel="icon">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type = "text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+   
+   <!-- Datatable -->
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+   <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+   <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+   <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+   <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+   <link href='https://fonts.googleapis.com/css?family=Chelsea Market' rel='stylesheet'>
+   <link rel="stylesheet" type = "text/css" href="/static/css/reports.css">
+   <link rel="shortcut icon" href="#">
+</head>
+<body>
+    <ul>
+        <div class="item">
+            <li>
+              <a href = "/findplay/playgrounds" class="parco"><span>Struttura: "{{ tipo_struttura }}" cod. {{codice_struttura}}</span></a>
+            </li>
+        </div>
+      <li style = "float:right"><a class = "active" href="/findplay/logout">LOGOUT</a></li>
+    </ul>
+    <div class="mt-4">
+        <table id="tab_reports" class="display table responsive">
+            
+            <p align=center class="title_tab">Segnalazioni struttura "{{ tipo_struttura }}": </p>
+            
+            <thead class="tab_head">
+                <tr>
+                    <th>N°</th>
+                    <th>Oggetto</th>
+                    <th>Data di pubblicazione</th>
+                    <th>Tipologia</th>
+                    <th>Letto</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for row in reports %}
+                {% if row["type"] == "sicurezza" %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>
+                            <!-- <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['subject']}}" onclick="showModal('{{row['subject']}}','{{row['description']}}','{{row['creation_date']}}','{{row['code_pg']}}','{{row['id_equip']}}','{{row['user_id']}}','{{row['unixtime']}}')";>{{row["subject"]}}</a> -->
+                            <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+
+                        </td>
+                        <td>{{ row["creation_date"] }}</td>
+                        <td class="sicurezza">{{ row["type"] }}</td>
+                        <td>{{ row["status"] }}</td>
+                    </tr>
+                {% elif row["type"] == "manutenzione" %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>
+                            <!-- <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['subject']}}" onclick="showModal('{{row['subject']}}','{{row['description']}}','{{row['creation_date']}}','{{row['code_pg']}}','{{row['id_equip']}}','{{row['user_id']}}','{{row['unixtime']}}')";>{{row["subject"]}}</a> -->
+                            <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                            
+                        </td>
+                        <td>{{ row["creation_date"] }}</td>
+                        <td class="manutenzione">{{ row["type"] }}</td>
+                        <td>{{ row["status"] }}</td>
+                    </tr>
+                {% elif row["type"] == "vandalismo" %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>
+                            <!-- <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['subject']}}" onclick="showModal('{{row['subject']}}','{{row['description']}}','{{row['creation_date']}}','{{row['code_pg']}}','{{row['id_equip']}}','{{row['user_id']}}','{{row['unixtime']}}')">{{row["subject"]}}</a> -->
+                            <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                            
+                        </td>
+                        <td>{{ row["creation_date"] }}</td>
+                        <td class="vandalismo">{{ row["type"] }}</td>
+                        <td>{{ row["status"] }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <!-- <td><a href='/findplay/playgrounds/{{ row["subject"] }}'>{{ row["subject"] }}</a></td> -->
+                        <td>
+                            <!-- <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['subject']}}" onclick="showModal('{{row['subject']}}','{{row['description']}}','{{row['creation_date']}}','{{row['code_pg']}}','{{row['id_equip']}}','{{row['user_id']}}','{{row['unixtime']}}')">{{row["subject"]}}</a> -->
+                            <a href="/findplay/report/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                            
+                        </td>
+                        <td>{{ row["creation_date"] }}</td>
+                        <td class="altro">{{ row["type"] }}</td>
+                        <td>{{ row["status"] }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}  
+            </tbody>
+        </table>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><b>Oggetto</b></p>
+            <p id='oggetto'></p>
+            <p><b>Descrizione</b></p>
+            <p id='descrizione'></p>
+            <p><b>Data</b></p>
+            <p id='data'></p>
+            <p><b>Immagine</b></p>
+            <div id="image">
+                <img alt="Immagine della segnalazione" id="targetImage" /> 
+            </div>
+        </div>
+    
+    </div>
+
+
+    <script>
+        $(document).ready( function () {
+          $('#tab_reports').DataTable({
+            "language": {
+              "search": "Cerca segnalazioni: ",
+              "paginate": {
+                "previous":"Precedente",
+                "next":"Successivo"
+              },
+              "info": "Pagina _PAGE_ di _PAGES_",
+              "infoEmpty": "Risultato da 0 a 0 su 0 risultati",
+              "infoFiltered": "(filtrati su un totale di _MAX_ risultati)",
+              "zeroRecords": "Nessun risultato trovato",
+              "lengthMenu": "Mostra <select>"+
+                '<option value="25">25</option>'+
+                '<option value="-1">Tutti</option>'+
+                '</select> segnalazioni per pagina'
+            },
+            "iDisplayLength": 25
+          });
+      } );
+    </script>
+    <script>
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+
+        function showModal(row) {
+            modal.style.display = "block";
+            document.getElementById("oggetto").innerHTML = row["subject"];
+            document.getElementById('descrizione').innerHTML = row["description"];
+            document.getElementById('data').innerHTML = row["creation_date"];
+            
+            let str = '/static/report_pictures/targetreports/';
+            str += row['code_pg'];
+            str += '_';
+            str += row['id_equip'];
+            str += '_';
+            str += row["user_id"];
+            str += '_';
+            str += row['unixtime'];
+            str += '.jpg';
+            loadImage(str);
+        }
+  
+  
+        let loadImage = function(variable){
+            var image = new Image();
+            var url_image = variable;
+            image.src = url_image;
+            image.onload = function() {
+                console.log('Image exists.');
+                document.getElementById("targetImage").src = variable;
+            }
+            image.onerror = function() {
+                console.log('Image does not exist.');
+                document.getElementById("image").innerHTML = "<p>Nessuna immagine inviata dall'utente <span style='font-size:50px;'>&#129335;</span></p>";
+            }
+        } 
+        
+        
+
+        // When the user clicks on <span> (x), close the modal and refresh page
+        span.onclick = function() {
+        modal.style.display = "none";
+        window.location.reload();
+        }
+
+        // When the user clicks anywhere outside of the modal, close it and refresh page
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            window.location.reload();
+        }
+        }
+    </script>
+
+    
+</body>
+</html>
+

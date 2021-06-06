@@ -1,0 +1,91 @@
+body{
+  margin:0;
+  padding:0;
+  background-color: #eee69e;
+  font-family: sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #595959;
+  font-family: "Comfortaa";
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white !important;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* li a:hover:not(.active) {
+  background-color: #111;
+} */
+
+.active {
+  background-color: #3bc8c7;
+}
+
+a:not([href]):not([tabindex]) {
+  text-decoration: none;
+}
+
+.tab_head{
+  background-color: #fec93d;
+}
+
+.title_tab{
+  font-family: "Chelsea market";
+  font-size: 30px;
+  color: #434343;
+}
+
+table{
+  width: 99% !important;
+}
+
+.dataTables_wrapper {
+  position: relative;
+  clear: both;
+  *zoom: 1;
+  zoom: 1;
+  font-family: "Comfortaa";
+}
+
+.dataTables_wrapper 
+.dataTables_paginate 
+.paginate_button.disabled, 
+.dataTables_wrapper 
+.dataTables_paginate 
+.paginate_button.disabled:hover, 
+.dataTables_wrapper 
+.dataTables_paginate
+.paginate_button.disabled:active {
+  cursor: default;
+  color: #434343 !important;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.checked {
+  color: orange;
+}
+
+.new {
+  color: #f7c7c4;
+  font-size: 20px;
+  animation: mymove 1s infinite;
+}
+
+@keyframes mymove {
+  50% {color: #f71206;}
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione strutture parco {{ parco["pg_name"] }}</title>
+    
+    <!-- Favicons -->
+    <link href="/static/img/landingpage/marker.png" rel="icon">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type = "text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+   
+   <!-- Datatable -->
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+   <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+   <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+   <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+   <link href='https://fonts.googleapis.com/css?family=Chelsea Market' rel='stylesheet'>
+   <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="shortcut icon" href="#">
+   <link rel="stylesheet" type = "text/css" href="/static/css/structures.css">
+</head>
+<body>
+    <ul>
+      <div class="item">
+        <li>
+          <a href = "/findplay/playgrounds" class="parco"><span>Parco "{{ parco["pg_name"] }}"</span></a>
+        </li>
+      </div>
+      <li style = "float:right"><a class = "active" href="/findplay/logout">LOGOUT</a></li>
+    </ul>
+
+    <div align="center">
+      <iframe width="1000" height="500" frameborder="0" scrolling="no" style="margin-top: 50px;margin-bottom: 50px;border:10px solid #fec93d;" src="https://maps.google.com/maps?width=720&amp;height=600&amp;hl=en&amp;q={{ parco['pg_lat'] }},{{ parco['pg_long'] }}&amp;t=k&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+      </iframe>
+    </div>
+
+    <div class="mt-4">
+      <table id="tab_segnalazioni" class="display table responsive">
+          
+          <p align=center class="title_tab">Segnalazioni parco</p>
+          
+          <thead class="tab_head">
+              <tr>
+                  <th>N°</th>
+                  <th>Oggetto</th>
+                  <th>Data di pubblicazione</th>
+                  <th>Tipologia</th>
+                  <th>Letto</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for row in globalrep %}
+            {% if row["type"] == "illuminazione" %}
+              <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>
+                      <a href="/findplay/globalreport/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                  </td>
+                  <td>{{ row["creation_date"] }}</td>
+                  <td class="illuminazione">{{ row["type"] }}</td>
+                  <td>{{ row["status"] }}</td>
+              </tr>
+            {% elif row["type"] == "manutenzione" %}
+              <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>
+                      <a href="/findplay/globalreport/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                  </td>
+                  <td>{{ row["creation_date"] }}</td>
+                  <td class="manutenzione">{{ row["type"] }}</td>
+                  <td>{{ row["status"] }}</td>
+              </tr>
+            {% elif row["type"] == "sicurezza" %}
+              <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>
+                      <a href="/findplay/globalreport/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                  </td>
+                  <td>{{ row["creation_date"] }}</td>
+                  <td class="sicurezza">{{ row["type"] }}</td>
+                  <td>{{ row["status"] }}</td>
+              </tr>
+            {% elif row["type"] == "pulizia" %}
+              <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>
+                      <a href="/findplay/globalreport/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                  </td>
+                  <td>{{ row["creation_date"] }}</td>
+                  <td class="pulizia">{{ row["type"] }}</td>
+                  <td>{{ row["status"] }}</td>
+              </tr>    
+            {% elif row["type"] == "vandalismo" %}
+              <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>
+                      <a href="/findplay/globalreport/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                  </td>
+                  <td>{{ row["creation_date"] }}</td>
+                  <td class="vandalismo">{{ row["type"] }}</td>
+                  <td>{{ row["status"] }}</td>
+              </tr>    
+            {% else %}
+              <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>
+                      <a href="/findplay/globalreport/{{row['code_pg']}}/{{row['user_id']}}/{{row['unixtime']}}" onclick='showModal({{row | tojson | safe}})'>{{row["subject"]}}</a>
+                  </td>
+                  <td>{{ row["creation_date"] }}</td>
+                  <td class="altro">{{ row["type"] }}</td>
+                  <td>{{ row["status"] }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}  
+          </tbody>
+      </table>
+    </div>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><b>Oggetto</b></p>
+        <p id='oggetto'></p>
+        <p><b>Descrizione</b></p>
+        <p id='descrizione'></p>
+        <p><b>Data</b></p>
+        <p id='data'></p>
+        <p><b>Immagine</b></p>
+        <div id="image">
+          <img alt="Immagine della segnalazione" id="globImage" /> 
+        </div>
+      </div>
+  
+  </div>
+
+    <div class="mt-4">
+        <table id="tab_recensioni" class="display table responsive">
+            
+            <p align=center class="title_tab">Recensioni</p>
+            
+            <thead class="tab_head">
+                <tr>
+                    <th>N°</th>
+                    <th>Descrizione</th>
+                    <th>Data di pubblicazione</th>
+                    <th>Punteggio</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in reviews %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row["content"] }}</td>
+                    <td>{{ row["creation_date"] }}</td>
+                    {% if row["score"] == 0 %}
+                      <td><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                    {% elif row["score"] == 1 %}
+                      <td><div style="display:none;">1</div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                    {% elif row["score"] == 2 %}
+                      <td><div style="display:none;">2</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                    {% elif row["score"] == 3 %}
+                      <td><div style="display:none;">3</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></td>
+                    {% elif row["score"] == 4 %}
+                      <td><div style="display:none;">4</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span></td>
+                    {% else %}
+                      <td><div style="display:none;">5</div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></td>
+                    {% endif%}
+                </tr>
+            {% endfor %}  
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="mt-4">
+        <table id="tab_strutture" class="display table responsive">
+            
+            <p align=center class="title_tab">Elenco delle strutture</p>
+           
+            <thead class="tab_head">
+                <tr>
+                    <th>Codice struttura</th>
+                    <th>Tipo struttura</th>
+                    <th>Nuove segnalazioni</th>
+                    <th>Totale segnalazioni ricevute</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            {% for row in structures %}
+                <tr>
+                    <td><a href='/findplay/playgrounds/{{ row["code_pg"] }}/{{ row["id_equip"] }}'> {{ row["id_equip"] }}</a></td>
+                    <td>{{ row["type_eq"] }}</td>
+                    {% if row["num_new_reports"] != 0 %}
+                      <td class="new">{{ row["num_new_reports"] }} </td>
+                    {% elif row["num_new_reports"] == 0 %}
+                      <td>{{ row["num_new_reports"] }}</td>
+                    {% endif%}
+                    <td>{{ row["num_reports"] }}</td>
+
+                </tr>
+            {% endfor %}  
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready( function () {
+          $('#tab_recensioni').DataTable({
+            "language": {
+              "search": "Cerca recensione: ",
+              "paginate": {
+                "previous":"Precedente",
+                "next":"Successivo"
+              },
+              "info": "Pagina _PAGE_ di _PAGES_",
+              "infoEmpty": "Risultato da 0 a 0 su 0 risultati",
+              "infoFiltered": "(filtrati su un totale di _MAX_ risultati)",
+              "zeroRecords": "Nessun risultato trovato",
+              "lengthMenu": "Mostra <select>"+
+                '<option value="25">25</option>'+
+                '<option value="-1">Tutte</option>'+
+                '</select> recensioni per pagina'
+            },
+            "iDisplayLength": 25
+          });
+      });
+    </script>
+    <script>
+        $(document).ready( function () {
+          $('#tab_strutture').DataTable({
+            "language": {
+              "search": "Cerca struttura: ",
+              "paginate": {
+                "previous":"Precedente",
+                "next":"Successivo"
+              },
+              "info": "Pagina _PAGE_ di _PAGES_",
+              "infoEmpty": "Risultato da 0 a 0 su 0 risultati",
+              "infoFiltered": "(filtrati su un totale di _MAX_ risultati)",
+              "zeroRecords": "Nessun risultato trovato",
+              "lengthMenu": "Mostra <select>"+
+                '<option value="25">25</option>'+
+                '<option value="-1">Tutte</option>'+
+                '</select> strutture per pagina'
+            },
+            "iDisplayLength": 25
+          });
+      });
+    </script>
+    <script>
+      $(document).ready( function () {
+        $('#tab_segnalazioni').DataTable({
+          "language": {
+            "search": "Cerca segnalazioni: ",
+            "paginate": {
+              "previous":"Precedente",
+              "next":"Successivo"
+            },
+            "info": "Pagina _PAGE_ di _PAGES_",
+            "infoEmpty": "Risultato da 0 a 0 su 0 risultati",
+            "infoFiltered": "(filtrati su un totale di _MAX_ risultati)",
+            "zeroRecords": "Nessun risultato trovato",
+            "lengthMenu": "Mostra <select>"+
+              '<option value="25">25</option>'+
+              '<option value="-1">Tutte</option>'+
+              '</select> segnalazioni per pagina'
+          },
+          "iDisplayLength": 25
+        });
+    });
+  </script>
+  <script>
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+
+    function showModal(row) {
+      modal.style.display = "block";
+      document.getElementById("oggetto").innerHTML = row["subject"];
+      document.getElementById('descrizione').innerHTML = row["description"];
+      document.getElementById('data').innerHTML = row["creation_date"];
+      
+      let str = '/static/report_pictures/globalreports/';
+      str += row['code_pg'];
+      str += '_';
+      str += row["user_id"];
+      str += '_';
+      str += row['unixtime'];
+      str += '.jpg';
+      loadImage(str);
+  }
+
+
+  let loadImage = function(variable){
+    var image = new Image();
+    var url_image = variable;
+    image.src = url_image;
+    image.onload = function() {
+      console.log('Image exists.');
+      document.getElementById("globImage").src = variable;
+    }
+    image.onerror = function() {
+      console.log('Image does not exist.');
+      document.getElementById("image").innerHTML = "<p>Nessuna immagine inviata dall'utente <span style='font-size:50px;'>&#129335;</span></p>";
+    }
+  }
+    
+
+    // When the user clicks on <span> (x), close the modal and refresh page
+    span.onclick = function() {
+    modal.style.display = "none";
+    window.location.reload();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it and refresh page
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        window.location.reload();
+    }
+    }
+</script>
+</body>
+</html>

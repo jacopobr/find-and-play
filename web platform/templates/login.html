@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/login_style.css">
+    <link href='https://fonts.googleapis.com/css?family=Chelsea Market' rel='stylesheet'>
+      <!-- Favicons -->
+    <link href="/static/img/landingpage/marker.png" rel="icon">
+
+    <link rel="shortcut icon" href="#">
+</head>
+<body> 
+    <div align=center id="box_logo">   
+        <h1 align=center class="titolo">Find&Play</h1>
+        <img src="/static/img/logo/Find&Play_logo.png" alt="Logo Find & Play" class="logo">   
+    </div>
+    
+    
+    <form class="box" action="/findplay" method="POST">
+        <h1>Accedi</h1>
+        <!-- <h1>{{info}}</h1> -->
+        {% for message in get_flashed_messages() %}
+            <div class="alert-error">{{ message }}</div>
+        {% endfor %}
+        <input type="text" name="u" placeholder="Inserisci Codice Fiscale">
+        <input type="password" name="p" placeholder="Inserisci Password">
+        <input type="submit" name="" value="ACCEDI">         
+    </form>
+    
+    
+
+
+</body>
+</html>
+
