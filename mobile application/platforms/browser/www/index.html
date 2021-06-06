@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="onsenui/css/onsen-css-components.css">
+    <script src="onsenui/js/onsenui.min.js"></script>
+    <script> ons.platform.select('android')</script>
+    <link rel="stylesheet" href="css/custom_style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+    <title>Find&Play</title>
+</head>
+<body>
+
+
+<!-- ONS SPLITTER -->
+<ons-navigator swipeable id="myNavigator" page="index.html"></ons-navigator>
+<template id = "index.html">
+<ons-page id = "index">
+    <ons-splitter>
+        <ons-splitter-side id="menuSplitter" side="left" width="60%" collapse>
+        <ons-page>
+            <ons-gesture-detector onclick="updateProfilePicture()" >
+            <div class = "profilePictureSplitter" style="margin-top: 5%;">
+                <img id ="ProfilePicSplitter" src ="img/small-profile.jpeg" class = "profile--picture--splitter">
+            </div>
+            </ons-gesture-detector>
+            <ons-list>
+            <ons-list-item modifier = "longdivider" style="text-align: center;">
+                <b id = "splitterUserName"></b>
+            </ons-list-item>
+            <!-- <ons-list-item onclick="loadSplitterPage('./home.html')" tappable>
+                Esplora
+            </ons-list-item> -->
+            <ons-list-item modifier = "longdivider" onclick="loadSplitterPage('./myReviewsPage.html')" tappable>
+                <div class = "left" style ="min-width: 0px;"><ons-icon icon = "fa-star-o" style= "color: #f0a500"></ons-icon></div>
+                Le mie recensioni  
+            </ons-list-item>
+            <ons-list-item modifier = "longdivider" onclick="loadSplitterPage('./myReportsPage.html')" tappable>
+                <div class = "left" style ="min-width: 0px;"><ons-icon icon = "fa-flag"style = "color: #FE6D73"></ons-icon></div>
+                Le mie segnalazioni
+            </ons-list-item>
+            <ons-list-item modifier = "longdivider" onclick = "sendEmailToUs()" tappable>
+                <div class = "left" style ="min-width: 0px;"><ons-icon icon = "fa-envelope-o" style = "color: #9ddfd3"></ons-icon></div>
+                Contattaci    
+            </ons-list-item>
+            <ons-list-item modifier = "longdivider" onclick="logout()" tappable>
+                <div class = "left" style ="min-width: 0px;"><ons-icon icon = "fa-sign-out" style = "color: #595959"></ons-icon></div>
+                Logout
+            </ons-list-item>
+            </ons-list>
+        </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content id="content" page="./home.html"></ons-splitter-content>
+    </ons-splitter>
+</ons-page>
+</template>
+
+  <!-- <template id = "index.html">
+      <ons-page id="index">
+        
+      </ons-page>
+  </template> -->
+
+<!--Modal Info Card-->
+    <ons-modal id = "modal-play" direction="up">
+        <ons-page id = "infoCard">
+            <ons-toolbar>
+                <div id = "infoCardPlayName" class ="center"></div>
+                <div class="right">
+                    <ons-toolbar-button id = "closeModal">×</ons-toolbar-button>
+                </div>    
+            </ons-toolbar>
+            <ons-tabbar id ="playTabbar" position="top">
+                <ons-tab page="./playInfo.html" label="Panoramica" active></ons-tab>
+                <ons-tab page="./playReview.html" label="Recensioni"></ons-tab>
+                <ons-tab page="./playReport.html" label="Segnala"></ons-tab>
+            </ons-tabbar>
+        </ons-page>
+    </ons-modal>
+
+    <!-- Write Review dialog -->
+    <ons-dialog id="writeReviewDialog" cancelable>
+        <div style="margin: 5%;">
+        <span>Valutazione:</span>
+        <div style ="text-align: center; margin-top:2%">
+            <ons-button id ="onestar"class = "star-rating" onclick="scoreReview(1)" style = "box-shadow: none;"><ons-icon icon = "fa-star"></ons-icon></ons-button>
+            <ons-button id ="twostars" class = "star-rating" onclick="scoreReview(2)" style = "box-shadow: none;"><ons-icon icon = "fa-star"></ons-icon></ons-button>
+            <ons-button id = "threestars" class = "star-rating" onclick="scoreReview(3)" style = "box-shadow: none;"><ons-icon icon = "fa-star"></ons-icon></ons-button>
+            <ons-button id = "fourstars" class = "star-rating"  onclick="scoreReview(4)" style = "box-shadow: none;"><ons-icon icon = "fa-star"></ons-icon></ons-button>
+            <ons-button id = "fivestars"class = "star-rating" onclick="scoreReview(5)" style = "box-shadow: none;"><ons-icon icon = "fa-star"></ons-icon></ons-button>
+          </div>
+        <textarea id = "contentReview" class="textarea" rows="6" placeholder="Recensione" style="width: 100%;"></textarea><br>
+        <ons-button onclick="sendReview()" style="margin-top: 5%;display: block;  margin-left: auto; margin-right:auto; width: 60%;">Invia</ons-button>
+        </div>
+    </ons-dialog>
+
+    <!-- Recover Password Dialog -->
+    <ons-dialog id="recoverPasswordDialog" cancelable>
+      <div style="margin: 5%;">
+      <span>Inserisci l'indirizzo email:</span>
+      <ons-input id="user_email_recover_password" modifier="underbar" type="Email" placeholder="Email" float class ="input-login-registration" style ="width: 100%;"></ons-input>
+      <ons-button onclick="recoverPassword()" style="margin-top: 5%;display: block;  margin-left: auto; margin-right:auto;">Recupera password</ons-button>
+      </div>
+    </ons-dialog>
+    <!-- Ons Alert Dialog -->
+    <ons-alert-dialog id="email-already-used" modifier="material">
+        <div class="alert-dialog-title">Indirizzo email già utilizzato!</div>
+        <div class="alert-dialog-content">
+          Attenzione, l'indirizzo email che stai inserendo, è già registrato a Find&Play.
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('email-already-used').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <!-- Email not existing -->
+      <ons-alert-dialog id="email-not-existing" modifier="material">
+        <div class="alert-dialog-title">Indirizzo email non esistente!</div>
+        <div class="alert-dialog-content">
+          Attenzione, l'indirizzo email che stai inserendo, non è registrato in Find&Play.
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('email-not-existing').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <!-- Emil Sent -->
+      <ons-alert-dialog id="email-recover-sent" modifier="material">
+        <div class="alert-dialog-title">Controlla la tua email!</div>
+        <div class="alert-dialog-content">
+          Ti abbiamo inviato un email contenente le istruzioni per ripristinare la tua password.
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('email-recover-sent').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+
+
+      <ons-alert-dialog id="some-problems" modifier="material">
+        <div class="alert-dialog-title">Ooopssss...</div>
+        <div class="alert-dialog-content">
+          Ci scusiamo, ma sembra che il nostro cavalluccio stia avendo qualche problema.<br>Riprova tra poco!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('some-problems').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="sent-confirm" modifier="material">
+        <div class="alert-dialog-title">Manca poco!</div>
+        <div class="alert-dialog-content">
+          Clicca sul link nell'email di conferma che ti abbiamo mandato per attivare il tuo account!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('sent-confirm').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="confirm-pending" modifier="material">
+        <div class="alert-dialog-title">Ehi, ehi, ehi...</div>
+        <div class="alert-dialog-content">
+            L'indirizzo con cui provi ad accedere non è stato confermato. Controlla la tua casella di posta!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('confirm-pending').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="review-sent" modifier="material">
+        <div class="alert-dialog-title">Fatto</div>
+        <div class="alert-dialog-content">
+            La tua recensione è stata inserita correttamente!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('review-sent').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="review-not-sent" modifier="material">
+        <div class="alert-dialog-title">Mhmmm...</div>
+        <div class="alert-dialog-content">
+            La tua recensione non è stata inserita correttamente, riprova o contattaci!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('review-not-sent').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="review-existing" modifier="material">
+        <div class="alert-dialog-title">Ci hai già detto la tua!</div>
+        <div class="alert-dialog-content">
+            Esiste già una tua recensione per questo parco. Modifica o elimina la precedente!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('review-existing').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="report-existing" modifier="material">
+        <div class="alert-dialog-title">Ci hai già detto la tua!</div>
+        <div class="alert-dialog-content">
+            Puoi inviare una segnalazione per lo stesso soggetto ogni 24H!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('report-existing').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-alert-dialog id="report-sent" modifier="material">
+        <div class="alert-dialog-title">Fatto</div>
+        <div class="alert-dialog-content">
+            La tua segnalazione è stata inviata correttamente!
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('report-sent').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      
+      <ons-alert-dialog id="filter-empty" modifier="material">
+        <div class="alert-dialog-title">Ops</div>
+        <div class="alert-dialog-content">
+            Non esiste un parco con le opzioni che hai selezionato.
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('filter-empty').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+
+      <ons-dialog id="filterDialog" cancelable>
+        <div style="margin-top: 2%; margin-bottom: 2%;">
+          <ons-list modifier = "inset" style="margin-bottom: 2%;" id = "accessible_filter">
+            <ons-list-header>Accessibilità: </ons-list-header>
+            <ons-row style="text-align: center; margin-bottom: 2%;">
+                <ons-col width="50%"><ons-radio id="accessibleCheckbox" name = "choice_accessibility" value="accessible"></ons-radio> Accessibile</ons-col>
+                <ons-col><ons-radio id="inclusiveCheckbox" name = "choice_accessibility" value="inclusive"></ons-radio> Inclusivo</ons-col>
+            </ons-row>
+          </ons-list>
+          <ons-list modifier = "inset" id = "age_filter" style="margin-bottom: 2%;">
+            <ons-list-header>Età minima giochi:</ons-list-header>
+            <ons-row style="text-align: center;  margin-bottom: 2%;">
+                <ons-col width="50%"><ons-radio id="ageThreeCheckbox" name = "choice_age" value="3"></ons-radio> 3+</ons-col>
+                <ons-col><ons-radio id="ageSixCheckbox" name = "choice_age" value="6"></ons-radio> 6+</ons-col>
+            </ons-row>
+          </ons-list>
+          <ons-list id = "equipment_filter" modifier="inset" style="margin-bottom: 2%;">
+            <ons-list-header>Strutture: </ons-list-header>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="altalena-sel" value = "altalena"></ons-checkbox>
+              </label>
+              <label for="altalena-sel" class="center">
+                Altalena
+              </label>
+            </ons-list-item>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="castello-sel" value = "castello"></ons-checkbox>
+              </label>
+              <label for="castello-sel" class="center">
+                Castello
+              </label>
+            </ons-list-item>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="dondolo-sel" value = "dondolo"></ons-checkbox>
+              </label>
+              <label for="dondolo-sel" class="center">
+                Dondolo
+              </label>
+            </ons-list-item>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="girello-sel" value ="girello"></ons-checkbox>
+              </label>
+              <label for="girello-sel" class="center">
+                Girello
+              </label>
+            </ons-list-item>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="molla-sel" value = "molla"></ons-checkbox>
+              </label>
+              <label for="molla-sel" class="center">
+                Molla
+              </label>
+            </ons-list-item>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="pale-sel" value = "palestrina"></ons-checkbox>
+              </label>
+              <label for="pale-sel" class="center">
+                Palestrina
+              </label>
+            </ons-list-item>
+            <ons-list-item tappable>
+              <label class="left">
+                <ons-checkbox input-id="scivolo-sel" value = "scivolo"></ons-checkbox>
+              </label>
+              <label for="scivolo-sel" class="center">
+                Scivolo
+              </label>
+            </ons-list-item>
+          </ons-list>
+          <ons-row style="text-align: center; margin: 2%;">
+            <ons-col width="50%"><ons-button onclick="resetFilter()"> Reset</ons-button></ons-col>
+            <ons-col width="50%"><ons-button onclick="filterPlaygrounds()"> Invia</ons-button></ons-col>
+        </ons-row>
+       </div>
+      </ons-dialog>
+
+      <ons-alert-dialog id="picture-uploaded" modifier="material">
+        <div class="alert-dialog-title">Fatto!</div>
+        <div class="alert-dialog-content">
+            La tua foto profilo è stata caricata con successo.
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('picture-uploaded').hide()">OK</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+      
+
+
+
+
+
+
+
+    <!-- Popover Strutture -->
+    <ons-popover direction="left" id="popoverequipmet" cancelable mask-color = "rgba(0,0,0,0.5)">
+          <img id = "equipmentImage" class = "popover_image">
+    </ons-popover>
+
+    <!--Ons Toast notifications-->
+    <ons-toast id="fillAllFormToast"  class="top-everything">
+        Devi riempire tutti i campi. 
+    </ons-toast>
+    <ons-toast id="passwordDifferentToast"  class="top-everything">
+        Le due password non sono uguali
+    </ons-toast>
+    <ons-toast id="passwordWrongFormatToast"  class="top-everything">
+        La password deve essere contenere un numero ed essere lunga almeno 8 caratteri
+    </ons-toast>
+    <ons-toast id="emailWrongToast"  class="top-everything">
+        L'indirizzo email non è valido
+    </ons-toast>
+    <ons-toast id="emailNoTRegisterToast"  class="top-everything">
+        L'indirizzo email non è registrato
+    </ons-toast>
+    <ons-toast id="wrongPasswordToast"  class="top-everything">
+        La password è sbagliata
+    </ons-toast>
+     <ons-toast id="needRating"  class="top-everything">
+        Inserisci una valutazione
+    </ons-toast>
+    <ons-toast id="needReview" class="top-everything">
+        Inserisci il corpo della recensione
+    </ons-toast>
+
+
+
+
+
+    
+<script src="cordova.js"></script>
+<script src = "js/three.min.js"></script>
+<script src = "js/panolens.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/borderTorino.js"></script>
+<script src ="js/auxiliary.js"></script>
+<script src = "js/turet.js"></script>
+</body>
+</html>

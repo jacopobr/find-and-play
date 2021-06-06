@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.polito.findplay" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Find&amp;Play</name>
+    <description>
+        Trova i parchi giochi più vicino a te!
+    </description>
+    <author email="" href="">
+        Find&amp;Play Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="cdvfile://*" />
+    <allow-navigation href="*"/>
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+
+
+
+
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <splash src="res/screen/android/splash-port-hdpi.png" density="port-hdpi" />
+        <splash src="res/screen/android/splash-port-ldpi.png" density="port-ldpi" />
+        <splash src="res/screen/android/splash-port-mdpi.png" density="port-mdpi" />
+        <splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi" />
+        <splash src="res/screen/android/splash-port-xxhdpi.png" density="port-xxhdpi" />
+        <splash src="res/screen/android/splash-port-xxxhdpi.png" density="port-xxxhdpi" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" />
+        </edit-config>
+        <resource-file src="res/android/adaptiveicon/drawable/ic_launcher_background.xml" target="app/src/main/res/drawable/ic_launcher_background.xml" />
+        <resource-file src="res/android/adaptiveicon/mipmap-anydpi-v26/ic_launcher.xml" target="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
+        <resource-file src="res/android/adaptiveicon/mipmap-anydpi-v26/ic_launcher_round.xml" target="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" />
+        <resource-file src="res/android/adaptiveicon/mipmap-hdpi/ic_launcher.png" target="app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-hdpi/foreground.png" target="app/src/main/res/mipmap-hdpi/foreground.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-hdpi/ic_launcher_round.png" target="app/src/main/res/mipmap-hdpi/ic_launcher_round.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-mdpi/ic_launcher.png" target="app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-mdpi/foreground.png" target="app/src/main/res/mipmap-mdpi/foreground.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-mdpi/ic_launcher_round.png" target="app/src/main/res/mipmap-mdpi/ic_launcher_round.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xhdpi/ic_launcher.png" target="app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xhdpi/foreground.png" target="app/src/main/res/mipmap-xhdpi/foreground.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xhdpi/ic_launcher_round.png" target="app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xxhdpi/ic_launcher.png" target="app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xxhdpi/foreground.png" target="app/src/main/res/mipmap-xxhdpi/foreground.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xxhdpi/ic_launcher_round.png" target="app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xxxhdpi/ic_launcher.png" target="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xxxhdpi/foreground.png" target="app/src/main/res/mipmap-xxxhdpi/foreground.png" />
+        <resource-file src="res/android/adaptiveicon/mipmap-xxxhdpi/ic_launcher_round.png" target="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" />
+
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <splash src="res/screen/ios/Default@2x~iphone~anyany.png" />
+        <splash src="res/screen/ios/Default@2x~iphone~comany.png" />
+        <splash src="res/screen/ios/Default@2x~iphone~comcom.png" />
+        <splash src="res/screen/ios/Default@3x~iphone~anyany.png" />
+        <splash src="res/screen/ios/Default@3x~iphone~anycom.png" />
+        <splash src="res/screen/ios/Default@3x~iphone~comany.png" />
+        <splash src="res/screen/ios/Default@2x~ipad~anyany.png" />
+        <splash src="res/screen/ios/Default@2x~ipad~comany.png" /> 
+    </platform>
+
+    <!-- iOS Quirks to justify the use of sensitive information -->
+    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>Permettici di trovare i parco giochi vicini a te.</string>
+    </edit-config>
+
+    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+        <string>Abbiamo bisogno della tua fotocamera per poter scattare le foto.</string>
+    </config-file>
+
+
+
+
+
+    <preference name="Orientation" value="portrait" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="SplashScreenDelay" value="2500" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#ffe66d" />
+    <preference name="StatusBarStyle" value="blackopaque"/>
+    <preference name="Scheme" value="https" />
+    <preference name="ScrollEnabled" value="true" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="<your_api>" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="<your_api>" />
+    <preference name="android-minSdkVersion" value="29" />
+    <preference name="android-targetSdkVersion" value="29"/>
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    
+
+
+
+
+
+
+</widget>

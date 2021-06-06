@@ -1,0 +1,23 @@
+<ons-page id = 'login.html' >
+  <ons-toolbar>
+    <div class="left"><ons-button class ="custom-icon-back-button" onclick ="document.getElementById('myNavigator').popPage({animation:'fade',animationOptions:{duration:0.2}})" modifier = "quiet"><ons-icon icon = "fa-arrow-left"></ons-icon></ons-button></div>
+    <div class="center">Entra</div>
+  </ons-toolbar>
+  <div style="margin-top: 15%; height: 90%;">
+    <div style="text-align: center;">
+      <div>
+        <img src ="img/logo.png" style = "width: 150px;height: 150px;">
+      </div>
+      <ons-input id="user_email_login" modifier="underbar" type="Email" placeholder="Email" float class ="input-login-registration"></ons-input>
+      <ons-input id="password_login" modifier="underbar" type="Password" placeholder="Password" float class ="input-login-registration"></ons-input>
+      <ons-button onclick="login()" style="width:40%; margin-top: 5%;">Entra</ons-button><br>
+      <ons-button id = "forgot_password_button" onclick = "document.getElementById('recoverPasswordDialog').show()" modifier="quiet">Password dimenticata?</ons-button>
+    </div>
+  <div style = "text-align: center;width:100%;">
+    <div style="margin-top: 35%; color: #434343;;">
+    Non sei un utente?<br>
+    <ons-button style="margin-top: 2%; width:40%;" onclick="document.getElementById('myNavigator').replacePage('./registrationPage.html')">Registrati</ons-button>
+     </div>
+   </div>
+  </div>
+</ons-page>

@@ -1,0 +1,381 @@
+@font-face {
+    font-family: Chelsea Market;
+    src: url('../font/ChelseaMarket-Regular.ttf');
+}
+
+@font-face {
+    font-family: Comfortaa;
+    src: url('../font/Comfortaa-Light.ttf');
+}
+
+@keyframes fade {
+    from {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+*{
+    font-family: Comfortaa;
+}
+
+.html{
+    height: 100%;
+    width: 100%;
+
+}
+
+
+.body{
+    position: absolute;
+}
+.page--material {
+    background-color: #FEF9EF;
+}
+#index .page__background{
+    background-color: rgb(255, 255, 255);
+
+}
+#index .page--material__background{
+    background-color: rgba(255,255,255);
+}
+
+
+#playReport\.html .page__background{
+    background-color: #FEF9EF;
+
+}
+#playReport\.html .page--material__background{
+    background-color: #FEF9EF;
+}
+#playReview\.html .page__background{
+    background-color: #FEF9EF;
+
+}
+#playReview\.html .page--material__background{
+    background-color: #FEF9EF;
+}
+#myReportsPage\.html .page--material__background{
+    background-color: #FEF9EF;
+}
+#myReviews\.html .page--material__background{
+    background-color: #FEF9EF;
+}
+
+
+#home .page__background{
+    background-color: rgb(0,0,0,0);
+}
+
+#home .page--material__background{
+    background-color: rgba(0,0,0,0);
+}
+.toolbar {
+    background-color: #ffe66d;
+}
+.tabbar {
+    background-color: #ffe66d;
+}
+
+:checked + .tabbar__button {
+    color: #31313a;
+    color: #31313a;
+    background-color: transparent;
+    box-shadow: none;
+    box-shadow: none;
+    border-top: none;
+    border-top: none;
+  }
+.card--material {
+    background-color: rgb(255, 255, 255);
+}
+.review--list {
+    background-color: #FEF9EF;
+}
+
+.list-item__thumbnail{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: block;
+    margin: 0;
+    border: 1px solid #ffe66d;
+    
+}
+
+.list-item--material__thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: block;
+    margin: 0;
+    border: 1px solid #ffe66d;
+    
+}
+
+.list-item--material__left{
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: flex;
+    padding:10px 20px 10px 0;;
+    -webkit-order: 0;
+            order: 0;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-align-self: stretch;
+            align-self: stretch;
+    line-height: 1.2em;
+    min-height: 44px;
+    min-height: 44px;
+
+}
+
+
+
+#map {
+    height: 100%;
+    z-index: 1;
+   }
+
+
+
+.pgm-html-info-content-frame{
+    border-radius: 10px;
+    opacity: 1;
+}
+
+#infoWindowContainer {
+    margin:0px 0px 0px 0px;
+    min-width: 150px;
+    font-size: smaller;
+
+}
+#infoCard {
+    width: 90%;
+    height: 80%;
+    margin: auto;
+}
+.reviewItems {
+    /* border: 1px solid #ffe66d; */
+    padding: 0px;
+    /* box-shadow: 0 8px 6px -6px #ffe66d; */
+}
+
+
+.profilePicture {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-image: url("img/small-profile.jpeg");
+    object-fit: cover;
+    object-position: center right;
+  }
+
+  .profile--picture--registration {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center right;
+    border: 5px solid #ffe66d;
+    object-fit: cover;
+    object-position: center right;
+  }
+
+  .profilePictureSplitter {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 5%;
+    padding-bottom: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+  }
+
+.profile--picture--splitter {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center right;
+  border: 5px solid rgb(255, 209, 100);
+  object-fit: cover;
+  object-position: center right;
+}
+.review--picture--splitter {
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center right;
+    border: 2px solid rgb(255, 209, 100);
+    object-fit: cover;
+    object-position: center right;
+  }
+  
+
+.overflow_ios {
+    height:100%;
+    overflow: scroll !important; 
+}
+
+.pano-image {
+    width: 100%;
+    height: 40%;
+}
+
+.popover_image{
+    padding: 2%;
+    width: 95%;
+    height: 95%;
+}
+
+.toolbar__title {
+  color: #595959;
+
+}
+
+.toolbar__center {
+    font-family: Chelsea Market;
+}
+
+.tabbar__label {
+    color: #434343;
+    font-family: Comfortaa;
+
+}
+
+
+.button {
+    font-family: Comfortaa;
+    background-color: #3bc8c7;
+}
+.star-rating {
+    background-color: rgb(0,0,0,0);
+    color: #434343;
+    box-shadow: rgb(0,0,0,0);
+}
+
+.star-rating:active{
+    background-color: rgb(0,0,0,0);
+    box-shadow: rgb(0,0,0,0);
+
+}
+
+.text-input {
+    font-family: Comfortaa;
+    font-size: 17px;
+
+}
+
+.text-input--material__label--active {
+    color: #3bc8c7;
+}
+
+.textarea {
+    font-family: Comfortaa;
+}
+
+.select-input {
+    font-family: Comfortaa;
+}
+
+.input-login-registration{
+    width: 75%;
+    margin-top: 5%;
+}
+
+.custom-icon-back-button {
+    color: #595959;
+    background-color:rgb(0,0,0,0);
+    font-size: large;
+}
+
+.custom-search-button {
+    color: #595959;
+    background-color:rgb(0,0,0,0);
+    box-shadow: none;
+}
+
+
+.alert-dialog-content {
+    font: Comfortaa;
+}
+
+.alert-dialog-button {
+    font: Comfortaa;
+    color: #3bc8c7;
+}
+
+.alert-dialog-title--material {
+    color: #595959;
+    font: Chelsea Market !important;
+}
+
+.alert-dialog-content--material {
+    color: #595959;
+    font: Chelsea Market !important;
+}
+
+.search-input--material {
+    font: Comfortaa;
+}
+
+.optionBar {
+    z-index:2;
+    display: none;
+    text-align: center;
+    animation: fade 0.2s linear forwards;
+    background-color: #fafafa !important;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 1px 0 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+#searchPlayground {
+    float:left; 
+    text-align: center;
+    margin: 8px;
+    width: 82%;
+    font: Comfortaa;
+
+}
+
+#filterButtonDiv {
+    display:inline;
+    float:left; 
+    margin-top: 14px;
+}
+
+#forgot_password_button {
+    font-family: Comfortaa;
+    color: #434343;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.filterButton {
+    font-family: Comfortaa;
+    background-color: #3bc8c7;
+}
+
+.content-review-report {
+    font-size: 14px;
+}
+
+.top-everything {
+    z-index: 2147483647 !important;
+    position: absolute;
+}

@@ -1,0 +1,24 @@
+<ons-page id="home">
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button icon="fa-user-o" onclick = "openSplitter()" style = "color:#595959 "></ons-toolbar-button>
+      </div>
+      <div class="center">Esplora</div>
+      <div class="right">
+        <ons-button id ="openOptionBarButton" class ="custom-search-button" value = "0" onclick="showOptionbar()" style = "border-radius: 100%;"><ons-icon icon="fa-search"></ons-icon></ons-button>
+      </div>
+    </ons-toolbar>
+    <div id = "map">
+      <div class = "optionBar" id ="optionBar">
+        <div id = "SearchBarDiv" style="display:inline;">
+          <ons-search-input id = "searchPlayground" onkeyup = "searchBarPlayground()" placeholder="Cerca"></ons-search-input>
+        </div>
+        <div id = "filterButtonDiv" >
+          <ons-button id ="filterButton" onclick="document.getElementById('filterDialog').show()" class = "filterButton"><ons-icon  icon="fa-filter"></ons-icon></ons-button>
+        </div>
+      </div>
+      <ons-fab id = "fountainFab" position="bottom left" onclick="showTuret()">
+        <ons-icon id = "dropicon" icon="fa-tint" style ="color: #595959;"></ons-icon>
+      </ons-fab>
+    </div>
+</ons-page>

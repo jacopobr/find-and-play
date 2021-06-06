@@ -1,0 +1,13 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Find&Play",
+  "short_name": "Find&Play",
+  "version": "io.polito.findplay",
+  "description": "Trova i parchi giochi più vicino a te!",
+  "author": "Find&Play Team",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "index.html",
+  "theme_color": "#ffe66d"
+}

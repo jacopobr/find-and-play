@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.polito.findplay" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Find&amp;Play</name>
+    <description>
+        Trova i parchi giochi più vicino a te!
+    </description>
+    <author email="findandplay@gmail.com" href="https://findplay.ddns.net">
+        Find&amp;Play Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="cdvfile://*" />
+    <allow-navigation href="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>Permettici di trovare i parco giochi vicini a te.</string>
+    </edit-config>
+    <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
+        <string>Abbiamo bisogno della tua fotocamera per poter scattare le foto.</string>
+    </config-file>
+    <preference name="Orientation" value="portrait" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreenDelay" value="2500" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#ffe66d" />
+    <preference name="StatusBarStyle" value="blackopaque" />
+    <preference name="Scheme" value="https" />
+    <preference name="ScrollEnabled" value="true" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyBsgAiujhlxfqhx_trCg--aQxHlYj_SyJY" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyAZhHvnJkDPnfYHSmu0P9FsG-qY1fXj4TQ" />
+    <preference name="android-minSdkVersion" value="29" />
+    <preference name="android-targetSdkVersion" value="29" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+</widget>

@@ -1,0 +1,45 @@
+<ons-page id = 'playReport.html' style="background-color: #FEF9EF;" >
+    <div style="padding-top:3%; padding-left: 5%;padding-right: 5%; display: flex; flex-flow: column; height: 100%;">
+        <div style = "width: 100%;">
+            <!-- <p style = "text-align: left"><b>Oggetto segnalazione:</b></p> -->
+            <ons-input id="subject" modifier="underbar" placeholder="Oggetto segnalazione"  maxlength="30" style="width: 100%;"></ons-input>
+        </div>
+
+        <div style="margin-top:5%;">
+            <ons-row style="margin-bottom:3%;text-align: left">Riferita a:</ons-row>
+            <ons-row>
+                <ons-col width="50%"><ons-radio id="playgroundCheckbox" name = "choice" value="playground" onclick = "hideEquipmentChoice()"></ons-radio> Parco</ons-col>
+                <ons-col><ons-radio id="equipmentCheckbox" name = "choice" value="equipment" onclick = "showEquipmentChoice()"></ons-radio> Struttura</ons-col>
+            </ons-row>
+        </div>
+
+        <div id = "divReportEquipmentList" style ="display: none; text-align: left; margin-top:2%">
+            Seleziona la struttura:<br>
+            <ons-select style="width:100%"><select id = "reportEquipmentList" class="select-input"></select></ons-select>
+        </div>
+
+        <div style = "text-align: left; margin-top:5%">
+                Categoria:
+            <br>
+            <ons-select style="width:100%; padding-bottom:5%">
+                <select id = "reportType" class="select-input"></select>
+            </ons-select>
+        </div>
+
+        <div style = "text-align: center; flex-grow: 1;">
+            <textarea id = "reportContent" class="textarea" rows="6" placeholder="Segnalazione..." maxlength="500" style="width:100%; margin-bottom:5%"></textarea>
+            <div style ="width: 60%; margin: 0 auto;">
+                <div>
+                    <ons-button id = "add-report-photo-button" onclick="addPhotoReport()"><ons-icon icon = "fa-camera"></ons-icon> Aggiungi foto</ons-button>
+                </div>
+                <div id ="delete-report-photo-button-div" style='display: none;margin-top: 2%; '>
+                    <ons-button id = "delete-report-photo-button" style ="background-color: #A0D468;" onclick="deleteReportPhoto()"><ons-icon icon = "fa-trash-o"></ons-icon></ons-button>
+                </div>
+            </div>
+            <br>
+            <div style = "margin: auto;">
+                <ons-button onclick="sendReport()" style = "margin-top:5%; bottom: 0px; margin-bottom: 5%;">Segnala</ons-button>
+            </div>
+        </div>
+    </div>
+</ons-page>

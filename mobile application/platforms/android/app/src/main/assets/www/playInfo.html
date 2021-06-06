@@ -1,0 +1,48 @@
+<ons-page id = 'playInfo.html'>
+  <div class = "overflow_ios">
+    <div id ="pano" class = "pano-image" ></div>                
+    <div class = "InfoPageContent">
+        <ons-list>
+                <ons-list-item modifier="longdivider" tappable onclick = "writeReview()">
+                        <div class = "left"><ons-icon icon = "fa-pencil-square-o" style = "color: #967ADC"></ons-icon></div>
+                        <div>Scrivi una recensione</div>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                        <div class = "left"><ons-icon icon = "fa-map-marker" style = "color: #DA4453"></ons-icon></div>
+                        <div id = "pg-address"></div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="longdivider">
+                        <div class = "left"><ons-icon icon = "fa-clock-o" style = "color: #FC6e51"></ons-icon></div>
+                        <div id ="opening-hour"></div>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                        <div class = "left"><ons-icon icon = "fa-wheelchair" style = "color: #ffce54"></ons-icon></div>
+                        <div id = "accessible"></div>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider">
+                        <div class = "left"><ons-icon icon = "fa-child" style = "color: #A0D468"></ons-icon></div>
+                        <div id = "access-age">Età accesso</div>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider" expandable id ="expandable-equipment" onclick = "document.getElementById('expandable-regolamento').hideExpansion()">
+                        <div class = "left"><ons-icon icon = "fa-puzzle-piece" style = "color: #37Bc9B"></ons-icon></div>
+                        <div>Strutture</div>
+                        <div class ="expandable-content" ><ons-list id ="equipment_list"></ons-list></div>
+                </ons-list-item>
+                <ons-list-item modifier="longdivider" expandable id ="expandable-regolamento" onclick = "document.getElementById('expandable-equipment').hideExpansion()">
+                        <div class = "left"><ons-icon icon = "fa-info" style = "color: #3BAFDA"></ons-icon></div>
+                        <div>Regolamento</div>
+                        <div class="expandable-content"><p>LE REGOLE PER L'UTILIZZO DELLE AREE GIOCO</p>
+                                Si ricorda in particolare che nelle aree gioco (Regolamento di Polizia Urbana e Regolamento del Verde Pubblico e Privato):<br>
+                                - Le attrezzature vanno utilizzate rispettando le fasce d'età consigliate e per le quali sono state realizzate, riportate sul singolo gioco;<br>
+                                - Il libero uso dei giochi da parte dei minori è posto sotto la responsabilità delle persone che ne hanno la custodia;<br>
+                                - Per la fascia da 0 a 3 anni le attrezzature devono essere utilizzate con l'accompagnamento di un adulto;<br>
+                                - I cani non possono entrare; <br>
+                                - Non si danneggiano gli alberi, i fiori, le attrezzature gioco e gli arredi; <br>
+                                - I veicoli a motore stanno fuori; <br>
+                                - I rifiuti vanno gettati negli appositi cestini <br>
+                </ons-list-item>                
+        </ons-list>
+    </div>
+  </div>
+</ons-page>

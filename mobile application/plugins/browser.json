@@ -1,0 +1,55 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-geolocation": {
+      "GPS_REQUIRED": "true",
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-googlemaps": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-plugin-email": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-disable-http-cache": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    },
+    "cordova-plugin-cache-clear": {
+      "PACKAGE_NAME": "io.polito.findplay"
+    }
+  },
+  "dependent_plugins": {}
+}

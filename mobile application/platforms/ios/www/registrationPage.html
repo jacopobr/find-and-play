@@ -1,0 +1,23 @@
+<ons-page id = 'registration.html'>
+  <ons-toolbar>
+    <div class="left"><ons-button class ="custom-icon-back-button" onclick ="document.getElementById('myNavigator').popPage({animation:'fade',animationOptions:{duration:0.2}})" modifier = "quiet"><ons-icon icon = "fa-arrow-left"></ons-icon></ons-button></div>
+    <div class="center">Registrati</div>
+  </ons-toolbar>
+   <div style="text-align: center; margin-top: 15%;position: absolute;">
+    <div>
+      <img src ="img/logo.png" style = "width: 150px;height: 150px;">
+    </div>
+
+        <ons-input id="user_name" modifier="underbar" placeholder="Nome" float class ="input-login-registration"></ons-input>
+        <ons-input id="user_surname" modifier="underbar" placeholder="Cognome" float class ="input-login-registration"></ons-input>
+        <ons-input id="user_email" modifier="underbar" type="Email" placeholder="Email" float class ="input-login-registration"></ons-input>
+        <ons-input id="password_one" modifier="underbar" type="Password" placeholder="Password" float class ="input-login-registration"></ons-input>
+        <ons-input id="password_two" modifier="underbar" type="password" placeholder="Verifica password" float class ="input-login-registration"></ons-input>
+  
+     <p style="margin-top: 30px;">
+       <ons-button onclick="register()">Registrati</ons-button>
+     </p>
+
+
+</div>
+</ons-page>

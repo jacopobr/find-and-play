@@ -1,0 +1,15 @@
+<ons-page id = "myReportsPage.html">
+  <ons-toolbar>
+    <div class="left"><ons-button class ="custom-icon-back-button" onclick ="document.getElementById('myNavigator').popPage({animation:'fade',animationOptions:{duration:0.2}})" modifier = "quiet"><ons-icon icon = "fa-arrow-left"></ons-icon></ons-button></div>
+    <div class="center" id = "centerProva">Le mie segnalazioni</div>
+  </ons-toolbar>
+  <div style ="text-align: center; background-color: #FEF9EF;">
+    <ons-search-input id = "searchReport" onkeyup = "searchBarReport()" placeholder="Cerca" style ="margin: 8px; width:90%; font: Comfortaa"></ons-search-input>
+  </div>
+  <div id = "no-reports" style = "display:none;height: 100%; text-align: center; background-color: #FEF9EF;">
+    <p>Non hai ancora mandato una segnalazione!</p>
+  </div>
+  <div div class = "overflow_ios" style = "background-color: #FEF9EF;">
+    <ons-list id ='lazyRepeatReport' class="review--list"></ons-list>
+  </div>
+</ons-page>

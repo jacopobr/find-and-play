@@ -1,0 +1,81 @@
+<ons-dialog id="writeReviewDialog" cancelable>
+    <div style="margin-top: 2%; margin-bottom: 2%;">
+      <ons-list modifier = "inset" style="margin-bottom: 2%;" id = "accessible_filter">
+        <ons-list-header>Accessibilità: </ons-list-header>
+        <ons-row style="text-align: center; margin-bottom: 2%;">
+            <ons-col width="50%"><ons-radio id="accessibleCheckbox" name = "choice_accessibility" value="accessible"></ons-radio> Accessibile</ons-col>
+            <ons-col><ons-radio id="inclusiveCheckbox" name = "choice_accessibility" value="inclusive"></ons-radio> Inclusivo</ons-col>
+        </ons-row>
+      </ons-list>
+      <ons-list modifier = "inset" id = "age_filter" style="margin-bottom: 2%;">
+        <ons-list-header>Età minima giochi:</ons-list-header>
+        <ons-row style="text-align: center;  margin-bottom: 2%;">
+            <ons-col width="50%"><ons-radio id="ageThreeCheckbox" name = "choice_age" value="3"></ons-radio> 3+</ons-col>
+            <ons-col><ons-radio id="ageSixCheckbox" name = "choice_age" value="6"></ons-radio> 6+</ons-col>
+        </ons-row>
+      </ons-list>
+      <ons-list id = "equipment_filter" modifier="inset" style="margin-bottom: 2%;">
+        <ons-list-header>Strutture: </ons-list-header>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="altalena-sel" value = "altalena"></ons-checkbox>
+          </label>
+          <label for="altalena-sel" class="center">
+            Altalena
+          </label>
+        </ons-list-item>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="castello-sel" value = "castello"></ons-checkbox>
+          </label>
+          <label for="castello-sel" class="center">
+            Castello
+          </label>
+        </ons-list-item>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="dondolo-sel" value = "dondolo"></ons-checkbox>
+          </label>
+          <label for="dondolo-sel" class="center">
+            Dondolo
+          </label>
+        </ons-list-item>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="girello-sel" value ="girello"></ons-checkbox>
+          </label>
+          <label for="girello-sel" class="center">
+            Girello
+          </label>
+        </ons-list-item>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="molla-sel" value = "molla"></ons-checkbox>
+          </label>
+          <label for="molla-sel" class="center">
+            Molla
+          </label>
+        </ons-list-item>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="pale-sel" value = "palestrina"></ons-checkbox>
+          </label>
+          <label for="pale-sel" class="center">
+            Palestrina
+          </label>
+        </ons-list-item>
+        <ons-list-item tappable>
+          <label class="left">
+            <ons-checkbox input-id="scivolo-sel" value = "scivolo"></ons-checkbox>
+          </label>
+          <label for="scivolo-sel" class="center">
+            Scivolo
+          </label>
+        </ons-list-item>
+      </ons-list>
+      <ons-row style="text-align: center; margin: 2%;">
+        <ons-col width="50%"><ons-button> Reset</ons-button></ons-col>
+        <ons-col width="50%"><ons-button onclick="prova()"> Invia</ons-button></ons-col>
+    </ons-row>
+  </div>
+</ons-dialog>
